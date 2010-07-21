@@ -40,7 +40,7 @@ class jsonRPCServer {
 		if (
 			$_SERVER['REQUEST_METHOD'] != 'POST' || 
 			empty($_SERVER['CONTENT_TYPE']) ||
-			$_SERVER['CONTENT_TYPE'] != 'application/json'
+                        strpos($_SERVER['CONTENT_TYPE'], 'application/json') != 0
 			) {
 			// This is not a JSON-RPC request
 			return false;
@@ -74,7 +74,7 @@ class jsonRPCServer {
 		
 		// output the response
 		if (!empty($request['id'])) { // notifications don't want response
-			header('content-type: text/javascript');
+			header('content-type: application/json');
 			echo json_encode($response);
 		}
 		
