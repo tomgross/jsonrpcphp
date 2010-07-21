@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE  html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>JSON-RPC PHP - A free and easy way to JSON-RPC</title>
+</head>
+<body>
+
+<h1>JSON-RPC PHP</h1>
+
+	<h2>Home</h2>
+	<p>
+<span style="color: #933">JSON-RPC PHP</span> is a couple of classes written in <a href="http://www.php.net/">PHP</a> implementing respectively client and server functionalities of the <a href="http://json-rpc.org/">JSON-RPC</a> protocol.
+</p>
+<p>
+The goal of the project is the full encapsulation of the JSON-RPC approach inside a PHP application.<br />
+Via these classes, it become possible to offer the network the methods of each one's own classes as RPC services and/or enjoy RPC services exacltly as if they were local objects.
+</p>
+<p>
+The <span style="color: #933">JSON-RPC PHP</span> classes usage is extremely simple and preserve the JSON spirit:
+</p>
+<p class="citazione">
+It is easy for humans to read and write. It is easy for machines to parse and generate. [<a href="http://json-rpc.org/">json.org</a>]
+</p>
+<p>
+Following this logic, the project is conceived to ensure the best code usability.
+</p>
+<p>
+Any comments, criticisms, suggests and clarification requests can be addressed to <a href="http://jsonrpcphp.org/mailto:info@jsonrpcphp.org">info@jsonrpcphp.org</a>. Any observation will be welcome.
+</p>
+<div class="alert">
+<span style="color: #933">JSON-RPC PHP</span> has been written by an <b>italian speaking</b> person. <b>English language</b> translation of the website, of the documentation and of the code comments are made by a language knowledge narrowed to a good will and a wild and travelling learning.<br />
+Any contribution to the translations (and any blast, when bringing with suggestions) will be accepted with enthusiasm.
+</div>
+	<h2>Introduction</h2>
+	<h3>Considerations</h3>
+<p>
+As of the increasing bandwidth of the networks, distributing an organic software device on several hosts and systems is an opportunity always more interesting.<br />
+Therefore, since an organic system can be distributed, the functionalities offered by that system can be consumed with the same ease by other systems. This produces many collective benefits about several facts.
+</p>
+<ul>
+	<li>It is not necessary to write code performing functions already performed by other systems.</li>
+	<li>Ownership, upgrading and management of the information mines can be left to their mantainer, while the full comsumption can be grant to the users.</li>
+	<li>Every host and every system can consider the state and the requests of other systems and complete their own state with the environement state.</li>
+</ul>
+<p>
+In these terms, we can think to Internet as an ecosystem, where each system is an organism.
+</p>
+<p>
+This phenomenon is well known by the widest part of human surfers of the web as <a href="http://en.wikipedia.org/wiki/Web_2.0">web 2.0</a>, where in this case that means the opportunity to enjoy systems with high information exchange and sharing.<br />
+As industrial planning and design, this phenomenon takes the name of <a href="http://en.wikipedia.org/wiki/Interoperability#Software">interoperability</a>.
+</p>
+<h3>Why <span style="color: #933">JSON-RPC PHP</span>?</h3>
+<p> Many approach exist and are well known to realize interoperability, but the most common and general is surely the <a href="http://en.wikipedia.org/wiki/Rpc">RPC</a> technique.
+</p>
+<p class="citazione">
+<b>Remote procedure call</b> (<b>RPC</b>) is a technology that allows a computer program to cause a subroutine or procedure to execute in another address space (commonly on another computer on a shared network) without the programmer explicitly coding the details for this remote interaction. [<a href="http://en.wikipedia.org/wiki/Rpc">Wikipedia</a>]
+</p>
+<p>
+Traditionally, the most common tools to implement RPC techniques are or have been <a href="http://en.wikipedia.org/wiki/ONC_RPC">ONC RPC</a>, <a href="http://en.wikipedia.org/wiki/CORBA">Corba</a>, <a href="http://en.wikipedia.org/wiki/MSRPC">MSRPC</a>, <a href="http://en.wikipedia.org/wiki/Java_Remote_Method_Invocation">Java RMI</a>, <a href="http://en.wikipedia.org/wiki/XML-RPC">XML-RPC</a>, <a href="http://en.wikipedia.org/wiki/SOAP">SOAP</a>.<br />
+However, none of these seems to be enough general to be used easly in different environements. The packaging appear hard to read for humans because the complex encapsulations and the <a href="http://en.wikipedia.org/wiki/Strongly-typed_programming_language">strong typing</a> makes the protocols hard for the <a href="http://en.wikipedia.org/wiki/Weak_typing">weak typing</a> programming languages, like PHP.
+</p>
+<p>
+In the latest years, a new technology evolved and became stable, very interesting for the incapsulation of complex data in a light logic and a simple format: <a href="http://json.org/">JSON</a>.
+</p>
+<p class="citazione">
+<b>JSON</b> (<b>J</b>ava<b>S</b>cript <b>O</b>bject <b>N</b>otation) is a lightweight data-interchange format. It is easy for humans to read and write. It is easy for machines to parse and generate. [<a href="http://json.org/">json.org</a>]
+</p>
+<p>
+Besides being easy to read for both humans and machines, JSON doesn't need to specify the type of the variables involved. This fact makes JSON the structured format more portable on the interoperability scene.
+</p>
+<p>
+Next to the JSON succes, an RPC technique has born, following the XML-RPC idea and taking the name of <a href="http://json-rpc.org/">JSON-RPC</a>.
+</p>
+<p class="citazione">
+<b>JSON-RPC</b> is lightweight remote procedure call protocol similar to XML-RPC. It's designed to be simple! [<a href="http://json-rpc.org/">json-rpc.org</a>]
+</p>
+<p>
+The JSON-RPC logic drow on the parent format, JSON, and inherit from it the attention given to portability, universality and simplicity.
+</p>
+<p>
+For these goodnesses and for the very simple but full support on JSON from PHP (natively supported from the 5.2.0 version, but far-back available as extension), the JSON-RPC technique accomplish very well to join the interoperability needs with the PHP code writing.
+</p>
+<p>
+<span style="color: #933">JSON-RPC PHP</span> classes definitively join the use of JSON-RPC with the PHP code writing, making the interoperability easy and transparent to folks writing in this language.
+</p>
+	<h2>Overview</h2>
+	<p>
+The <span style="color: #933">JSON-RPC PHP</span> goal is to make the network walking fully transparent to the programming. The idea is that an object <b>O</b> created in the host <b>S</b> (Server) could be used from the host <b>C</b> (Client) as if it was an internal object, whose behavior was identical to the <b>O</b> object in the <b>S</b> host.
+</p>
+<p>
+To grant this, naturally, in the <b>S</b> host must be present and running the server <i>jsonRPCServer</i>, that is a class with one static method incapsulating the requested object in a JSON-RPC service and serving it to the consumers coming from the network.<br />
+Similary, in the <b>C</b> host must be present the client <i>jsonRPCClient</i>, that is a class incapsulating the object methods through the network, that is creating objects for the <b>C</b> environement acting <span style="text-decoration: underline;">exactly</span> as the <b>O</b> object packaged in the server side.
+</p>
+<p>
+Obviously, client and server are used separately and there isn't any prescription in the use of one side only of the protocol with these classes.<br />
+The form of the construction remain identical: the <b>S</b> server serves the <b>O</b> object methods as JSON-RPC, regardless of that methods will be consumed by the remote systems. Similarly, the <b>C</b> client gives locally the JSON-RPC services as objects <b>O</b>, who have the same methods (with the same parameters) of the service.
+</p>
+<p>
+The version considered is the <a href="http://json-rpc.org/wiki/specification">JSON-RPC 1.0</a>. It's the only stable version available.<br />
+For simplicity (and according the JSON-RPC 1.1 version working draft), if not expressely required, the client doesn't use notifications.
+</p>
+	<h2>Crash course</h2>
+	<p>
+On the server side, the <i>jsonRPCServer</i> class has simply one static method. So, no objects have to be instanced. However, the object animating the service must be instanced, since the creation normally establishes the interaction of the object with the local enviroment (the database connection, some filesystem path, some configuration parameter, etc.)
+</p>
+<p>
+The server is prepared by:
+</p>
+<p class="code">
+<code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br />
+</span><span style="color: #007700">include&nbsp;</span><span style="color: #DD0000">'jsonRPCServer.php;<br />
+$myObject&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">myClass</span><span style="color: #007700">(</span><span style="color: #0000BB">$params</span><span style="color: #007700">);<br />
+</span><span style="color: #0000BB">jsonRPCServer</span><span style="color: #007700">::</span><span style="color: #0000BB">handle</span><span style="color: #007700">(</span><span style="color: #0000BB">$myObject</span><span style="color: #007700">);<br />
+</span><span style="color: #0000BB">?&gt;</span>
+</span></code>
+</p>
+<p>
+As you can see, the object is passed to the server in its current state. So, it is possible to give the server an object with a previuos life longer than a fresh created object, that is an object with an internal state more sofisticated than a new object.<br />
+Once the object is given to the server, all its methods will be available as JSON-RPC requests.
+</p>
+<p>
+On the client-side, things are even more easy.<br />
+Once known the existence of a service at a given URL, it is simply necessary to create a <i>jsonRPCClient</i> object, instanced passing the server URL to the constructor.
+</p>
+<p class="code">
+<code>
+<span style="color: #0000BB">&lt;?php<br />
+<span style="color: #007700">include&nbsp;</span><span style="color: #DD0000">'jsonRPCClient.php;<br />
+$myObject&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">jsonRPCClient</span><span style="color: #007700">(</span><span style="color: #DD0000">'http://servername/path/serverJSONRPC'</span><span style="color: #007700">);<br />
+</span><span style="color: #0000BB">?&gt;</span>
+</span></code>
+</p>
+<p>
+The object <code>$myObject</code> so created in the <b>C</b> host will behave <span style="text-decoration: underline;">exactly</span> like the <code>$myObject</code> object of the <b>S</b> host.
+</p>
+<p>
+If the <i>jsonRPCServer</i> and <i>jsonRPCClient</i> classes are used separately (i.e. to serve or consume functionality exchange with remote systems) these basic principles don't change.
+</p>
+	<h2>Requisites</h2>
+	<p>
+The <i>jsonRPCServer</i> and <i>jsonRPCClient</i> classes have been writte using the functions of the <a href="http://it.php.net/manual/en/language.oop5.php">PHP &gt; 5.0.0</a>.<br />
+</p>
+<p>
+Both classes, furthermore, use the <a href="http://it.php.net/manual/en/ref.json.php">JSON</a> functions of PHP.<br />
+These functions are natively bundled into PHP starting from 5.2.0, but they are available as <a href="http://pecl.php.net/package/json">PECL</a> extension for the previous versions.
+</p>
+<p>
+Both classes follow the <a href="http://json-rpc.org/wiki/specification">JSON-RPC 1.0</a> specifications.<br />
+Following the <a href="http://json-rpc.org/wd/JSON-RPC-1-1-WD-20060807.html">working draft (2006 08 07)</a> of the 1.1 version of the JSON-RPC protocol, the incoming version will be compatible with the 1.0.
+</p>
+<p>
+The server class must be run in a web server environement compatible with the <a href="http://www.w3.org/Protocols/rfc2616/rfc2616.html">HTTP/1.1</a> and able to run some <a href="http://it.php.net/manual/en/install.php">PHP modules</a>.<br />
+<a href="http://httpd.apache.org/">Apache web server</a> is suggested.
+</p>
+	<h2>Download</h2>
+	<p>
+<span style="color: #933">JSON-RPC PHP</span> is available in two different packages:
+</p>
+<p>
+<b>Full version</b>:<br />
+<a href="http://jsonrpcphp.org/download.php?file=tgz&amp;package=full">JSON-RCP_PHP_full.tgz</a> — <a href="http://jsonrpcphp.org/download.php?file=zip&amp;package=full">JSON-RCP_PHP_full.zip</a><br />
+including examples and references;
+</p>
+<p>
+<b>Light version</b>:<br />
+<a href="http://jsonrpcphp.org/download.php?file=tgz&amp;package=light">JSON-RCP_PHP_light.tgz</a> — <a href="http://jsonrpcphp.org/download.php?file=zip&amp;package=light">JSON-RCP_PHP_light.zip</a><br />
+including the two classes only.
+</p>
+<p>
+Thanks to <b>Devin Doucette</b> for his <a href="http://www.phpclasses.org/browse/package/945.html">class archives</a> that allowed us to dinamically generate the compressed archives.
+</p>
+<p>
+If you'll use <span style="color: #933">JSON-RPC PHP</span>, specially in a public environement, <a href="http://jsonrpcphp.org/mailto:info@jsonrpcphp.org">info@jsonrpcphp.org</a> will be very glad to be informed.
+</p>
+	<h2>Installation</h2>
+	<p>
+No special procedure is needed to install <span style="color: #933">JSON-RPC PHP</span>. Once the <a href="http://jsonrpcphp.org//?page=requisites&amp;lang=en">requisites</a> are respected, that classes are normal and indipendet classes in PHP.
+</p>
+<p>
+So, simply copy <i>jsonRPCServer.php</i> and/or <i>jsonRPCClient.php</i> in your <i>include_path</i> or where you want.<br />
+A path different from the <i>include_path</i> must be esplicitely declared when including the files.
+</p>
+<p>
+If you have problems and you think that you are in the requisites margins, you can signal the problem to <a href="http://jsonrpcphp.org/mailto:info@jsonrpcphp.org">info@jsonrpcphp.org</a>, taking care to indicate the error message received.
+</p>
+	<h2>References</h2>
+	<p>
+The trated themes require the knowledge of the <a href="http://json-rpc.org/wiki/specification">specification of the JSON-RPC 1.0 protocol</a>.
+</p>
+<hr />
+<p>
+The <i>jsonRPCServer</i> class contains only one static method <code>jsonRPCServer::handle()</code>, responding to the JSON-RPC requests.
+</p>
+<h3>jsonRPCServer::handle() (static)</h3>
+<p>
+jsonRPCServer::handle() — Forward a JSON-RPC request to a given object and respond to the client
+</p>
+<h4>Description</h4>
+<p>
+boolean <b>jsonRPCServer::handle</b> (object $object)
+</p>
+<p>
+Collect a valid JSON-RPC request and search the corresponding method in <code>$object</code>, using the request's parameters as method parameters.<br />
+The response is given as JSON-RPC response.
+</p>
+<p>
+The request is valid if it is a POST request and if it has a <code>Content-Type: application/json</code>. Either if the request is invalid or if it is a notification (see <a href="http://json-rpc.org/wiki/specification">http://json-rpc.org/wiki/specification</a>, <i>1.3 Notification</i>), no response will be given to the JSON-RPC client.
+</p>
+<h4>Parameters</h4>
+<p>
+<i>object</i> — The object whom the JSON-RCP request will be forwarded to.
+</p>
+<h4>Return</h4>
+<p>
+Returns <b>TRUE</b> if the JSON-RPC request is well formed (i.e. a POST request with <code>Content-Type: application/json</code>). Otherwise, returns <b>FALSE</b> to the main program and don't give a response to the JSON-RPC client.
+</p>
+<h4>Example</h4>
+<p class="code">
+<code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php <br /></span><span style="color: #007700">require_once&nbsp;</span><span style="color: #DD0000">'jsonRPCServer.php'</span><span style="color: #007700">; <br />require&nbsp;</span><span style="color: #DD0000">'example.php'</span><span style="color: #007700">; <br /> <br /></span><span style="color: #0000BB">$myExample&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">example</span><span style="color: #007700">(); <br /></span><span style="color: #0000BB">jsonRPCServer</span><span style="color: #007700">::</span><span style="color: #0000BB">handle</span><span style="color: #007700">(</span><span style="color: #0000BB">$myExample</span><span style="color: #007700">) <br />&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;print&nbsp;</span><span style="color: #DD0000">'no&nbsp;request'</span><span style="color: #007700">; <br /></span><span style="color: #0000BB">?&gt;</span></span>
+</code>
+</p>
+<h4>Note</h4>
+<p>
+If a request is valid (i.e. is a POST request with <code>Content-Type: application/json</code>) but contains some errors (e.g. the requested method doesn't exist in <code>$object</code> or the parameters structure is not valid) the <code>jsonRPCServer::handle</code> method returns <b>TRUE</b> to the calling program, but returns an error message to the JSON-RPC client.<br />
+This happens because informing the server side about a wrong client reqeust donesn't make sense, while the client must be informed about the bad quality of its message.<br />
+The JSON-RPC protocol contains a simple and full error management system rightly to this pourpose.
+</p>
+<hr />
+<p>
+The <i>jsonRPCclient</i> class contains three public methods: the constructor <code>jsonRPCClient->__construct()</code>, the <code>jsonRPCClient->__call()</code> method, forwarding the requests to the JSON-RPC server, and the <code>jsonRPCClient->setRPCNotification()</code>, to establish if the requests are normal requests or notifications.
+</p>
+<h3>jsonRPCClient->__construct()</h3>
+<p>
+jsonRPCClient->__construct() — Create a new jsonRPCClient object linking it to a JSON-RPC server
+</p>
+<h4>Description</h4>
+<p>
+class <b>jsonRPCClient</b> {<br />
+<b>__construct</b> (string $url[, boolean $debug])<br />
+}
+</p>
+<p>
+Create a new jsonRPCClient object linking it to a JSON-RPC server. The created object contains all JSON-RPC service's methods, each with the same parameters, and the methods return the same service structured values.<br />
+If required, setting to <b>TRUE</b> the <code>$debug</code> value, debugging informations are sent to the <i>stdout</i>.
+</p>
+<h4>Parameters</h4>
+<p>
+<i>url</i> — The JSON-RPS service's URL.<br />
+<i>debug</i> — I <b>TRUE</b>, output on the <i>stdout</i> the dialog between server and client. The <i>default</i> value is <b>FALSE</b>.
+</p>
+<h4>Return</h4>
+<p>
+Return a jsonRPCClient object.
+</p>
+<h4>Example</h4>
+<p class="code">
+<code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php <br /></span><span style="color: #007700">require_once&nbsp;</span><span style="color: #DD0000">'jsonRPCClient.php'</span><span style="color: #007700">; <br /></span><span style="color: #0000BB">$myExample&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">jsonRPCClient</span><span style="color: #007700">(</span><span style="color: #DD0000">'http://somehostname/path/jsonRPCserver'</span><span style="color: #007700">); <br /></span><span style="color: #0000BB">?&gt;</span></span>
+</code>
+</p>
+<h3>jsonRPCClient->__call()</h3>
+<p>
+jsonRPCClient->__call() — Load any called method in the corresponding method of the JSON-RPC server, forwarding the given parameters
+</p>
+<h4>Descriptio</h4>
+<p>
+class <b>jsonRPCClient</b> {<br />
+mixed <b>__call</b> (string $method, array $params)<br />
+}
+</p>
+<p>
+Wathever be the called method for the jsonRPCClient object, <code>__call()</code> converts it in the JSON-RPC method with the same name. The parameters also are forwarded in a fully transaparent way.
+</p>
+<p>
+<code>__call()</code> is a <i>magic method</i>, it must NOT be called with its own name. It collect every method called (except the explicitely defined ones), converting them in the JSON-RPC form.
+</p>
+<h4>Parameters</h4>
+<p>
+<i>method</i> — The name of the required method.<br />
+<i>params</i> — The parameters set packaged as an array.
+</p>
+<h4>Return</h4>
+<p>
+Return the structured value given by the called method. If the method is called as a notification, return <b>TRUE</b>.
+</p>
+<h4>Example</h4>
+<p class="code">
+<code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php <br /></span><span style="color: #007700">require_once&nbsp;</span><span style="color: #DD0000">'jsonRPCClient.php'</span><span style="color: #007700">; <br /></span><span style="color: #0000BB">$myExample&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">jsonRPCClient</span><span style="color: #007700">(</span><span style="color: #DD0000">'http://somehostname/path/jsonRPCserver'</span><span style="color: #007700">); <br /> <br />try&nbsp;{ <br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Your&nbsp;name&nbsp;is&nbsp;&lt;i&gt;'</span><span style="color: #007700">.</span><span style="color: #0000BB">$myExample</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">giveMeSomeData</span><span style="color: #007700">(</span><span style="color: #DD0000">'name'</span><span style="color: #007700">).</span><span style="color: #DD0000">'&lt;/i&gt;&lt;br&nbsp;/&gt;'</span><span style="color: #007700">.</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">; <br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$myExample</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">changeYourState</span><span style="color: #007700">(</span><span style="color: #DD0000">'I&nbsp;am&nbsp;using&nbsp;this&nbsp;function&nbsp;from&nbsp;the&nbsp;network'</span><span style="color: #007700">); <br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Your&nbsp;status&nbsp;request&nbsp;has&nbsp;been&nbsp;accepted&lt;br&nbsp;/&gt;'</span><span style="color: #007700">.</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">; <br />}&nbsp;catch&nbsp;(</span><span style="color: #0000BB">Exception&nbsp;$e</span><span style="color: #007700">)&nbsp;{ <br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">nl2br</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">()).</span><span style="color: #DD0000">'&lt;br&nbsp;/&gt;'</span><span style="color: #007700">.</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">; <br />} <br /></span><span style="color: #0000BB">?&gt;</span></span></code>
+</p>
+<h4>Note</h4>
+<p>
+Keep in mind the example: the <code>__call()</code> method isn't called explicitely. Instead, methods that aren't between the explicitely decalred methods of the class are called. These are the JSON-RPC service's methods.<br />
+<code>__call()</code> collect every method request not coresponding to any explicitely declared method of the class and manage it as JSON-RPC requests. The parameters too are given as the JSON-RPC method requires, where <code>__call()</code> will package them in an array.<br />
+In this way, the <code>__call()</code> method charges on itself the requests and act as a proxy to the JSON-RPC server.
+</p>
+<h3>jsonRPCClient->setRPCnotification()</h3>
+<p>
+jsonRPCClient->setRPCnotification() — Set the internal state of the object, to determine if the requests are sent as normal requests or notifications
+</p>
+<h4>Description</h4>
+<p>
+class <b>jsonRPCClient</b> {<br />
+void <b>setRPCnotification()</b> (boolean $notification)<br />
+}
+</p>
+<p>
+If a notification form is needed (see <a href="http://json-rpc.org/wiki/specification">http://json-rpc.org/wiki/specification</a>, <i>1.3 Notification</i>), a <b>TRUE</b> parameter must be sent to <code>setRPCnotification()</code>, before doing the request. From that moment every request will have the notification form.
+</p>
+<p>
+Send back a <b>FALSE</b> value to <code>setRPCnotification()</code> to restore the normal requests (with response).
+</p>
+<h4>Parameters</h4>
+<p>
+<i>notification</i> — A boolean value that should be <b>TRUE</b> if the requests must be notifications, <b>FALSE</b> if th requests must have a response.
+</p>
+<h4>Example</h4>
+<p class="code">
+<code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php <br /></span><span style="color: #007700">require_once&nbsp;</span><span style="color: #DD0000">'jsonRPCClient.php'</span><span style="color: #007700">; <br /></span><span style="color: #0000BB">$myExample&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">jsonRPCClient</span><span style="color: #007700">(</span><span style="color: #DD0000">'http://somehostname/path/jsonRPCserver'</span><span style="color: #007700">); <br /> <br />try&nbsp;{ <br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Your&nbsp;name&nbsp;is&nbsp;&lt;i&gt;'</span><span style="color: #007700">.</span><span style="color: #0000BB">$myExample</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">giveMeSomeData</span><span style="color: #007700">(</span><span style="color: #DD0000">'name'</span><span style="color: #007700">).</span><span style="color: #DD0000">'&lt;/i&gt;&lt;br&nbsp;/&gt;'</span><span style="color: #007700">.</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">; <br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$myExample</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setRPCnotification</span><span style="color: #007700">(</span><span style="color: #0000BB">true</span><span style="color: #007700">); <br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$myExample</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">changeYourState</span><span style="color: #007700">(</span><span style="color: #DD0000">'I&nbsp;am&nbsp;using&nbsp;this&nbsp;function&nbsp;from&nbsp;the&nbsp;network'</span><span style="color: #007700">); <br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Your&nbsp;status&nbsp;request&nbsp;has&nbsp;been&nbsp;accepted&lt;br&nbsp;/&gt;'</span><span style="color: #007700">.</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">; <br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$myExample</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">setRPCnotification</span><span style="color: #007700">(</span><span style="color: #0000BB">false</span><span style="color: #007700">); <br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Your&nbsp;personl&nbsp;attribute&nbsp;is&nbsp;&lt;i&gt;'</span><span style="color: #007700">.</span><span style="color: #0000BB">$myExample</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">giveMeSomeData</span><span style="color: #007700">(</span><span style="color: #DD0000">'attr'</span><span style="color: #007700">).</span><span style="color: #DD0000">'&lt;/i&gt;&lt;br&nbsp;/&gt;'</span><span style="color: #007700">.</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">; <br />}&nbsp;catch&nbsp;(</span><span style="color: #0000BB">Exception&nbsp;$e</span><span style="color: #007700">)&nbsp;{ <br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">nl2br</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">()).</span><span style="color: #DD0000">'&lt;br&nbsp;/&gt;'</span><span style="color: #007700">.</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">; <br />} <br /></span><span style="color: #0000BB">?&gt;</span>
+</span></code>
+</p>
+<h4>Note</h4>
+<p>
+In the method's requests there isn't a parameter indicating if the requests must be of the notification form, i.e., with no response.<br />
+As <i>default</i>, every request is a request expecting a response.
+</p>
+<p>
+This happens to grant the best fit between the JSON-RPc method form and the object form. Moreover, notifications don't fit to the way to write code in PHP, where every operation has a returned value.
+</p>
+<p>
+For these reasons, <code>setRPCnotification()</code> has been prepared as a separated <i>switch</i>, to be intended as a state modifier.
+</p>
+	<h2>Example</h2>
+	<p>
+This exercise makes both a <i>server-side</i> system and a <i>client-side</i> system to realize a complete JSON-RPC <i>case-study</i>.<br />
+The two sides, as you're going to see, are totally indipendent and they complement themselves for the pratice pourpose only.
+</p>
+<h3>Server</h3>
+<p>
+Suppose to have got an hosted class <i><b>example</b></i> [<a href="http://jsonrpcphp.org/code.php?file=example">code</a>] doing some operations in the local system.<br />
+The operations could be an informations request:
+</p>
+<p class="code">
+<code><span style="color: #000000">
+<span style="color: #007700">public&nbsp;function&nbsp;</span><span style="color: #0000BB">giveMeSomeData</span><span style="color: #007700">(</span><span style="color: #0000BB">$param</span><span style="color: #007700">);</span>
+</span></code>
+</p>
+<p>
+the supply of an information to be stored in the system:
+</p>
+<p class="code">
+<code><span style="color: #000000">
+<span style="color: #007700">public&nbsp;function&nbsp;</span><span style="color: #0000BB">changeYourState</span><span style="color: #007700">(</span><span style="color: #0000BB">$state</span><span style="color: #007700">);</span>
+</span></code>
+</p>
+<p>
+or a very important information storage in a database:
+</p>
+<p class="code">
+<code><span style="color: #000000">
+<span style="color: #007700">public&nbsp;function&nbsp;</span><span style="color: #0000BB">writeSomething</span><span style="color: #007700">(</span><span style="color: #0000BB">$something</span><span style="color: #007700">);</span>
+</span></code>
+</p>
+<p>
+moreover, there are some protected or private methods and some proprieties.
+</p>
+<p>
+It's easy to conceive a <i><b>localUsage</b></i> example [<a href="http://jsonrpcphp.org/code.php?file=localUsage">code</a>] of the objects of the <i>example</i> class:
+</p>
+<p class="code">
+<code><span style="color: #000000">
+<span style="color: #007700">require_once&nbsp;</span><span style="color: #DD0000">'example.php'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$myExample&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">example</span><span style="color: #007700">();</span>
+</span>
+</code>
+</p>
+<p>
+Suppose, also, that the same functionalities must be offered to some partners attending on the network, acting on different hosts.<br />
+A good way to aim the goal is <span style="color: #933">JSON-RPC PHP</span>. The RPC server could have the form:
+</p>
+<p class="code">
+<code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">require_once&nbsp;</span><span style="color: #DD0000">'jsonRPCServer.php'</span><span style="color: #007700">;<br />require&nbsp;</span><span style="color: #DD0000">'example.php'</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$myExample&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">example</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">jsonRPCServer</span><span style="color: #007700">::</span><span style="color: #0000BB">handle</span><span style="color: #007700">(</span><span style="color: #0000BB">$myExample</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;print&nbsp;</span><span style="color: #DD0000">'no&nbsp;request'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code>
+</p>
+<p>
+That's all.
+</p>
+<p>
+Once called with a weel formed JSON-RPC request, via HTTP-POST, the server will offer the same public methods of the <i>example</i> class, accept the same parameters and returns the same values.<br />
+The JSON-RPC language is detailed in the <a href="http://json-rpc.org/wiki/specification">specification</a>.
+</p>
+<p>
+Obviously, offering all public methods could be more than desired. It's possible that some operations are wanted unavailable to remote <i>consumers</i>, but restricted to the local users of the class.
+</p>
+<p>
+To be simple, <span style="color: #933">JSON-RPC PHP</span> doesn't offer a direct solution to this problem. This problem, in fact, can be easly resolved by the service developer with simple and ordinary techniques.
+</p>
+<p>
+Suppose, e.g., that the method:
+</p>
+<p class="code">
+<code><span style="color: #000000">
+<span style="color: #007700">public&nbsp;function&nbsp;</span><span style="color: #0000BB">writeSomething</span><span style="color: #007700">(</span><span style="color: #0000BB">$something</span><span style="color: #007700">);</span>
+</span></code>
+</p>
+<p>
+should be unavailable to the remote users.
+Simply, an extension <i><b>restrictedExample</b></i> [<a href="http://jsonrpcphp.org/code.php?file=restrictedExample">code</a>] is required, overriding the <code>writeSomething()</code> in a dummy way as:
+</p>
+<p class="code">
+<code><span style="color: #000000">
+<span style="color: #007700">public&nbsp;function&nbsp;</span><span style="color: #0000BB">writeSomething</span><span style="color: #007700">(</span><span style="color: #0000BB">$something</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw&nbsp;new&nbsp;</span><span style="color: #0000BB">Exception</span><span style="color: #007700">(</span><span style="color: #DD0000">'writeSomething&nbsp;method<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is&nbsp;not&nbsp;available&nbsp;for&nbsp;RPC'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}</span>
+</span></code>
+</p>
+<p>
+Once done, the <code>writeSomething()</code> method become unavailable from the network if the RPC has been builded via the new class.
+</p>
+<p>
+So, the new <i><b>server</b></i> [<a href="http://jsonrpcphp.org/code.php?file=server">code</a>], has the form:
+</p>
+<p class="code">
+<code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">require_once&nbsp;</span><span style="color: #DD0000">'jsonRPCServer.php'</span><span style="color: #007700">;<br />require&nbsp;</span><span style="color: #DD0000">'example.php'</span><span style="color: #007700">;<br />require&nbsp;</span><span style="color: #DD0000">'restrictedExample.php'</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$myExample&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">restrictedExample</span><span style="color: #007700">();<br /></span><span style="color: #0000BB">jsonRPCServer</span><span style="color: #007700">::</span><span style="color: #0000BB">handle</span><span style="color: #007700">(</span><span style="color: #0000BB">$myExample</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;print&nbsp;</span><span style="color: #DD0000">'no&nbsp;request'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">?&gt;</span>
+</span></code>
+</p>
+<p>
+Folks wanting test their clients, both <a href="http://jsonrpcphp.org/server.php">server</a> and <a href="http://jsonrpcphp.org/localUsage.php">localUsage</a> of this example are available and working.
+</p>
+<h3>Client</h3>
+<p>
+The client usage is very simple.
+</p>
+<p>
+suppose to know the existence of a JSON-RPC service, to know its methods and their features.<br />
+To simplify the example, suppose that the server could be the server of the above paragraph. As you'll see, it's unnecessary that both client and server are builded via <span style="color: #933">JSON-RPC PHP</span> classes.
+</p>
+<p>
+Once the service features are known, a <i>client</i> example [<a href="http://jsonrpcphp.org/code?file=client">code</a>] can be builded as follow:
+</p>
+<p class="code">
+<code><span style="color: #000000">
+<span style="color: #007700">require_once&nbsp;</span><span style="color: #DD0000">'jsonRPCClient.php'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$myExample&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">jsonRPCClient</span><span style="color: #007700">(</span><span style="color: #DD0000">'http://localhost/server.php'</span><span style="color: #007700">);</span>
+</span></code>
+</p>
+<p>
+The objects of the <i>jsonRPCClient</i> class so builded have the same methods of the RPC service available.
+</p>
+<p>
+That's all.
+</p>
+<p>
+Folks wanting veerify the class behaviour, the <a href="http://jsonrpcphp.org/client.php">client</a> output is available and working.
+</p>
+<h3>Concurrent usage of the <span style="color: #933">JSON-RPC PHP</span> client and server</h3>
+<p>
+Concurrently using both classes gives an interesting example to explane the logic.
+</p>
+<p>
+Observing the <i>localUsage</i> example (on the server side) of the <i>example</i> class and a <i>client</i> example on a remote host, it shows clearly that the resulting code is prefectly identical, except, obviously, the creation instruction.
+</p>
+<p>
+The only difference could be that if on the server side the classe usage has been restricted (in the <i>restrictedExample</i> way), the modified or erased methods would not have the same effect.
+</p>
+<p>
+<i>localUsage</i> [<a href="http://jsonrpcphp.org/localUsage.php">execute</a>]
+</p>
+<p class="code" style="max-width: none;">
+<code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">require_once&nbsp;</span><span style="color: #DD0000">'example.php'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$myExample&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">example</span><span style="color: #007700">();<br /><br /></span><span style="color: #FF8000">//&nbsp;performs&nbsp;some&nbsp;basic&nbsp;operation<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">'&lt;b&gt;Attempt&nbsp;to&nbsp;perform&nbsp;basic&nbsp;operations&lt;/b&gt;&lt;br&nbsp;/&gt;'</span><span style="color: #007700">.</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />try&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Your&nbsp;name&nbsp;is&nbsp;&lt;i&gt;'</span><span style="color: #007700">.</span><span style="color: #0000BB">$myExample</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">giveMeSomeData</span><span style="color: #007700">(</span><span style="color: #DD0000">'name'</span><span style="color: #007700">).</span><span style="color: #DD0000">'&lt;/i&gt;&lt;br&nbsp;/&gt;'</span><span style="color: #007700">.</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$myExample</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">changeYourState</span><span style="color: #007700">(</span><span style="color: #DD0000">'I&nbsp;am&nbsp;using&nbsp;this&nbsp;function&nbsp;from&nbsp;the&nbsp;local&nbsp;environement'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Your&nbsp;status&nbsp;request&nbsp;has&nbsp;been&nbsp;accepted&lt;br&nbsp;/&gt;'</span><span style="color: #007700">.</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}&nbsp;catch&nbsp;(</span><span style="color: #0000BB">Exception&nbsp;$e</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">nl2br</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">()).</span><span style="color: #DD0000">'&lt;br&nbsp;/&gt;'</span><span style="color: #007700">.</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;performs&nbsp;some&nbsp;strategic&nbsp;operation,&nbsp;locally&nbsp;allowed<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">'&lt;br&nbsp;/&gt;&lt;b&gt;Attempt&nbsp;to&nbsp;store&nbsp;strategic&nbsp;data&lt;/b&gt;&lt;br&nbsp;/&gt;'</span><span style="color: #007700">.</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />try&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$myExample</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">writeSomething</span><span style="color: #007700">(</span><span style="color: #DD0000">'Strategic&nbsp;string!'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Strategic&nbsp;data&nbsp;succefully&nbsp;stored'</span><span style="color: #007700">;<br />}&nbsp;catch&nbsp;(</span><span style="color: #0000BB">Exception&nbsp;$e</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">nl2br</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">());<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span></code>
+</p>
+<p>
+<i>client</i> [<a href="http://jsonrpcphp.org/client.php">execute</a>]
+</p>
+<p class="code" style="max-width: none;">
+<code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /></span><span style="color: #007700">require_once&nbsp;</span><span style="color: #DD0000">'jsonRPCClient.php'</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$myExample&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">jsonRPCClient</span><span style="color: #007700">(</span><span style="color: #DD0000">'http://jsonrpcphp.org/server.php'</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;performs&nbsp;some&nbsp;basic&nbsp;operation<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">'&lt;b&gt;Attempt&nbsp;to&nbsp;perform&nbsp;basic&nbsp;operations&lt;/b&gt;&lt;br&nbsp;/&gt;'</span><span style="color: #007700">.</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />try&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Your&nbsp;name&nbsp;is&nbsp;&lt;i&gt;'</span><span style="color: #007700">.</span><span style="color: #0000BB">$myExample</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">giveMeSomeData</span><span style="color: #007700">(</span><span style="color: #DD0000">'name'</span><span style="color: #007700">).</span><span style="color: #DD0000">'&lt;/i&gt;&lt;br&nbsp;/&gt;'</span><span style="color: #007700">.</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$myExample</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">changeYourState</span><span style="color: #007700">(</span><span style="color: #DD0000">'I&nbsp;am&nbsp;using&nbsp;this&nbsp;function&nbsp;from&nbsp;the&nbsp;network'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Your&nbsp;status&nbsp;request&nbsp;has&nbsp;been&nbsp;accepted&lt;br&nbsp;/&gt;'</span><span style="color: #007700">.</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}&nbsp;catch&nbsp;(</span><span style="color: #0000BB">Exception&nbsp;$e</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">nl2br</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">()).</span><span style="color: #DD0000">'&lt;br&nbsp;/&gt;'</span><span style="color: #007700">.</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />}<br /><br /></span><span style="color: #FF8000">//&nbsp;performs&nbsp;some&nbsp;strategic&nbsp;operation,&nbsp;locally&nbsp;allowed<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">'&lt;br&nbsp;/&gt;&lt;b&gt;Attempt&nbsp;to&nbsp;store&nbsp;strategic&nbsp;data&lt;/b&gt;&lt;br&nbsp;/&gt;'</span><span style="color: #007700">.</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />try&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$myExample</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">writeSomething</span><span style="color: #007700">(</span><span style="color: #DD0000">'Strategic&nbsp;string!'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">'Strategic&nbsp;data&nbsp;succefully&nbsp;stored'</span><span style="color: #007700">;<br />}&nbsp;catch&nbsp;(</span><span style="color: #0000BB">Exception&nbsp;$e</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #0000BB">nl2br</span><span style="color: #007700">(</span><span style="color: #0000BB">$e</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">getMessage</span><span style="color: #007700">());<br />}<br /></span><span style="color: #0000BB">?&gt;</span>
+</span></code>
+</p>
+<p>
+This comparison explain definitively the <span style="color: #933">JSON-RPC PHP</span> spirit.
+</p>
+	<h2>Code</h2>
+	<p>
+Il codice delle classi e tutto il codice utilizzato in qesto sito sono disponibili per la consultazione.<br />
+Dunque il codice può essere prelevato con le ordinarie operazioni di CTRL+C.
+</p>
+<p>
+Il codice delle due classi di <span style="color: #933">JSON-RPC PHP</span> è:
+</p>
+<ul>
+	<li><i><a href="http://jsonrpcphp.org/code.php?file=jsonRPCServer">jsonRPCServer</a></i> class;</li>
+	<li><i><a href="http://jsonrpcphp.org/code.php?file=jsonRPCClient">jsonRPCClient</a></i> class.</li>
+</ul>
+<p>
+Il codice utilizzato per gli esempi è:
+</p>
+<ul>
+	<li>server side <i><a href="http://jsonrpcphp.org/code.php?file=example">example</a></i> class;</li>
+	<li>server side <i><a href="http://jsonrpcphp.org/code.php?file=localUsage">localUsage</a></i> example;</li>
+	<li>server side <i><a href="http://jsonrpcphp.org/code.php?file=restrictedExample">restrictedExample</a></i> class;</li>
+	<li><i><a href="http://jsonrpcphp.org/code.php?file=server">server</a></i> usage example;</li>
+	<li><i><a href="http://jsonrpcphp.org/code.php?file=client">client</a></i> usage example.</li>
+</ul>
+	<h2>Test area</h2>
+	bu<br />
+body<br />
+body<br />
+body<br />
+body<br />
+body<br />
+body<br />
+body<br />
+body<br />
+body<br />
+body<br />
+	<h2>About</h2>
+	bu<br />
+body<br />
+body<br />
+body<br />
+body<br />
+body<br />
+body<br />
+body<br />
+body<br />
+body<br />
+body<br />
+	<h2>Disclaimer</h2>
+	bu<br />
+body<br />
+body<br />
+body<br />
+body<br />
+body<br />
+body<br />
+body<br />
+body<br />
+body<br />
+body<br />
+	<h2>Copyright</h2>
+	bu<br />
+body<br />
+body<br />
+body<br />
+body<br />
+body<br />
+body<br />
+body<br />
+body<br />
+body<br />
+body<br />
+
+<p>
+    <a href="http://validator.w3.org/check?uri=referer"><img
+        src="http://www.w3.org/Icons/valid-xhtml11"
+        alt="Valid XHTML 1.1" height="31" width="88" /></a>
+  </p>
+
+
+</body>
+</html>
